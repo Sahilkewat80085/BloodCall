@@ -127,11 +127,11 @@ public class UserSettingsActivity extends AppCompatActivity {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.user_preferences, rootKey);
-            Preference oss_btn = findPreference(getString(R.string.settings_toolbar));
-            Objects.requireNonNull(oss_btn).setOnPreferenceClickListener(preference -> {
-                startActivity(new Intent(getContext(), OssLicensesMenuActivity.class));
-                return true;
-            });
+//            Preference oss_btn = findPreference(getString(R.string.settings_toolbar));
+//            Objects.requireNonNull(oss_btn).setOnPreferenceClickListener(preference -> {
+//                startActivity(new Intent(getContext(), OssLicensesMenuActivity.class));
+//                return true;
+//            });
 
             Preference editProfile = findPreference("edit_profile");
 
@@ -180,11 +180,11 @@ public class UserSettingsActivity extends AppCompatActivity {
                 return true;
             });
 
-            Preference about_btn = findPreference(getString(R.string.about));
-            Objects.requireNonNull(about_btn).setOnPreferenceClickListener(preference -> {
-                startActivity(new Intent(getContext(), AboutActivity.class));
-                return true;
-            });
+//            Preference about_btn = findPreference(getString(R.string.about));
+//            Objects.requireNonNull(about_btn).setOnPreferenceClickListener(preference -> {
+//                startActivity(new Intent(getContext(), AboutActivity.class));
+//                return true;
+//            });
 
 
             Preference signout_btn = findPreference(getString(R.string.side_bar_signout));

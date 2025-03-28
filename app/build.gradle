@@ -1,48 +1,42 @@
 plugins {
     id 'com.android.application'
-    id 'com.google.gms.google-services'
-    id 'com.google.android.gms.oss-licenses-plugin'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'   // Firebase integration
+    id 'com.google.firebase.crashlytics'  // Crashlytics integration
+    id 'com.google.android.gms.oss-licenses-plugin' // Open Source Licenses
 }
-apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.crashlytics'
-
 
 android {
-    signingConfigs {
-        release {
-            storeFile file('C:\\Users\\thanb\\Documents\\androidKeystore\\default.jks')
-            storePassword '20032001'
-            keyAlias 'bloodcall'
-            keyPassword '20032001'
-        }
-    }
-    compileSdk 31
+    namespace "gr.gdschua.bloodapp"
+    compileSdk 34 // Ensure it's up-to-date
 
     defaultConfig {
         applicationId "gr.gdschua.bloodapp"
-        minSdk 19
-        targetSdk 31
-        versionCode 4
-        versionName "2.0"
-        multiDexEnabled true
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.release
+    buildFeatures {
+        viewBinding true
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+        }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    buildFeatures {
-        viewBinding true
+
+    // Ensure processDebugGoogleServices runs before mergeDebugResources
+    afterEvaluate {
+        tasks.named("mergeDebugResources").configure {
+            mustRunAfter("processDebugGoogleServices")
+        }
     }
 }
 
@@ -63,7 +57,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.4.1'
     implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
     implementation 'com.google.android.gms:play-services-location:19.0.1'
-    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+    implementation 'com.google.android.gms:play-services-maps:19.0.0'
     implementation 'androidx.exifinterface:exifinterface:1.3.3'
     implementation 'com.google.zxing:core:3.4.1'
     implementation 'com.google.android.gms:play-services-vision:20.1.3'

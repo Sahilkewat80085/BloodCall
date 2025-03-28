@@ -2,7 +2,7 @@
 <resources>
     <string-array name="donation_types_strings">
         <item>Regular Blood</item>
-        <item>Platelets</item>
-        <item>Plasma</item>
+        <item></item>
+        <item></item>
     </string-array>
 </resources>

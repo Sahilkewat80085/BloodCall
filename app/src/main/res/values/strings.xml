@@ -45,7 +45,7 @@
     <!-- Main Activity Strings !-->
     <string name="side_bar_home">Home</string>
     <string name="side_bar_map">Hospital Map</string>
-    <string name="settings_toolbar">Open source licences</string>
+    <string name="settings_toolbar"></string>
     <string name="side_bar_signout">Sign Out</string>
     <string name="signed_out">Signed Out</string>
     <string name="side_bar_add_event">Add Event</string>
@@ -116,7 +116,7 @@
     <string name="names" translatable="false"><a href="https://github.com/thanbimp">Athanasios Bimpas</a> \n <a href="https://github.com/kitsakisGk">Georgios Kitsakis</a> \n <a href="https://github.com/kourounisgiorgos">Georgios Kourounis</a> \n <a href="https://github.com/Bleemoose">Stefanos Togias</a></string>
     <string name="git_link"><a href="https://github.com/BloodCall">GitHub Project Page</a></string>
     <string name="licence_text">Distributed under GPL v3. A copy of the licence can be found <a href="https://www.gnu.org/licenses/gpl-3.0.html">here</a>. For library licences see \"Open Source Licences\" option.</string>
-    <string name="about">About</string>
+    <string name="about"></string>
     <string name="icons_disc">Icons from logomakr.com and Android default resources.</string>
     <string name="enable_location_title">Please enable the location setting on your device.</string>
     <string name="enable_location_text">This application requires the location setting on your phone to be enabled in order to display the map, and send you geographically filtered notifications. Please turn it on to continue</string>
@@ -166,7 +166,7 @@
     <string name="hosp_sett_donation_summary">Select what kind of donations you are currently accepting</string>
     <string name="hosp_settings_donation_type">Donation type</string>
     <string name="hosp_settings_cat_title">Hospital settings</string>
-    <string name="settings_information_cat">Information</string>
+    <string name="settings_information_cat"></string>
     <string name="user_settings_not_cat">Notifications</string>
     <string name="emerg_notif_summary">Select the distance of the hospitals you want to receive alerts from</string>
     <string name="emerg_notif_dist">Emergency notification distance</string>

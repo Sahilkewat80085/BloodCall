@@ -1,9 +1,18 @@
+pluginManagement {
+    repositories {
+        google()             // ✅ Essential for Firebase and Android plugins
+        mavenCentral()       // ✅ For core dependencies
+        gradlePluginPortal() // ✅ For external Gradle plugins
+    }
+}
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        google()
-        mavenCentral()
+        google()             // ✅ Ensure Google's Maven repo is included
+        mavenCentral()       // ✅ Ensure Maven Central is included
     }
 }
+
 rootProject.name = "BloodCall"
 include ':app'

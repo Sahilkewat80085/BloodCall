@@ -1,13 +1,12 @@
 package gr.gdschua.bloodapp.Utils;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,8 +34,6 @@ public class EmergenciesAdapter extends ArrayAdapter<Alert> {
         alertList = list;
     }
 
-
-
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -49,21 +46,36 @@ public class EmergenciesAdapter extends ArrayAdapter<Alert> {
         TextView hospitalAddressTV = listItem.findViewById(R.id.hospitalAddressTV);
         TextView alertBloodTypeTV = listItem.findViewById(R.id.alertBloodTypeTV);
 
+        // Get the alert object
+        Alert currentAlert = alertList.get(position);
 
-        daoHospitals.getUser(alertList.get(position).owner).addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        // Fetch hospital data from Firebase
+        daoHospitals.getUser(currentAlert.owner).addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if(task.isSuccessful()){
-                    Hospital currHospital = task.getResult().getValue(Hospital.class);
-                    assert currHospital != null;
-                    hospitalNameTV.setText(currHospital.getName());
-                    hospitalAddressTV.setText(currHospital.getAddress());
-                    alertBloodTypeTV.setText(alertList.get(position).getBloodType());
+                if (task.isSuccessful()) {
+                    DataSnapshot snapshot = task.getResult();
+
+                    if (snapshot.exists()) {
+                        Hospital currHospital = snapshot.getValue(Hospital.class);
+
+                        if (currHospital != null) {
+                            hospitalNameTV.setText(currHospital.getName());
+                            hospitalAddressTV.setText(currHospital.getAddress());
+                            alertBloodTypeTV.setText(currentAlert.getBloodType());
+                            Log.d("EmergenciesAdapter", "Hospital Loaded: " + currHospital.getName());
+                        } else {
+                            Log.e("EmergenciesAdapter", "Hospital object is null");
+                        }
+                    } else {
+                        Log.e("EmergenciesAdapter", "No hospital data found for owner: " + currentAlert.owner);
+                    }
+                } else {
+                    Log.e("EmergenciesAdapter", "Error fetching hospital data", task.getException());
                 }
             }
         });
 
         return listItem;
     }
-
 }
